@@ -6,10 +6,8 @@ include_once __DIR__ . '/../apikey.php';
 $client  = new \TRACDELIGHTAPI\Client($api_key);
 $request = new \TRACDELIGHTAPI\Request\Advertiser($client);
 
-$request->setSorting('name');
-
 try {
-	$output = $request::getAll();
+	$output = $request::getByName('cosmetic');
 	print_r($output);
 
 } catch (\Exception $e) {
