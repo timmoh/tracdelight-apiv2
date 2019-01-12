@@ -8,29 +8,50 @@ Tracdelight API V2 PHP-API-Connector (for PHP 7+)
 
 **2. locales**
 
+
+
+**3. Advertiser**
+
+Init:
+```php
+$request = new \TRACDELIGHTAPI\Request\Advertiser($client);
+```
+
 List all shops:
 
-✅ GET /advertisers
+```php
+$output = $request::getAll();
+```
 
 Retrieve one particular advertiser:
 
-✅ GET /advertisers/:id
+```php
+$output = $request::getByID($id);
+```
 
 Search by advertiser name:
 
-✅ GET /advertisers/?search=:query
+```php
+$output = $request::getByName('name');
+```
 
 Filter by network name:
 
-✅ GET /advertisers/?network=:query
+```php
+$output = $request::getByNetworkName('name');
+```
 
 Filter by top shop:
 
-✅ GET /advertisers/?top_shops=(true|false)
+```php
+$output = $request::getAllTopShops(true);
+```
 
 Filter by active campaigns:
 
-✅ GET /advertisers/?active_campaign=(true|false)
+```php
+$output = $request::getAllActiveCampaign(true);
+```
 
 **3. categories**
 
