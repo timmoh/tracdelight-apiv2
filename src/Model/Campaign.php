@@ -1,6 +1,8 @@
 <?php
 
 namespace TRACDELIGHTAPI\Model;
+use MintWare\JOM\JsonField;
+
 
 class Campaign extends BaseModel {
 
@@ -18,7 +20,7 @@ class Campaign extends BaseModel {
 
 	/**
 	 * @var float
-	 * @JsonField(name="rate", type="float")
+	 * @JsonField(name="rate", type="float|int")
 	 */
 	public $rate;
 

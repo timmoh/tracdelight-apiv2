@@ -1,6 +1,7 @@
 <?php
 
 namespace TRACDELIGHTAPI\Model;
+use MintWare\JOM\JsonField;
 
 class Brand extends BaseModel {
 
@@ -15,4 +16,11 @@ class Brand extends BaseModel {
 	 * @JsonField(name="name", type="string")
 	 */
 	public $name;
+
+
+	/**
+	 * @var string
+	 * @JsonField(name="url", type="string")
+	 */
+	public $url;
 }

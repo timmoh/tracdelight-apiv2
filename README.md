@@ -8,9 +8,28 @@ Tracdelight API V2 PHP-API-Connector (for PHP 7+)
 
 **2. locales**
 
+todo
 
+**3. categories**
 
-**3. Advertiser**
+Init:
+```php
+$request = new \TRACDELIGHTAPI\Request\Category($client);
+```
+
+**4. products**
+
+Init:
+```php
+$request = new \TRACDELIGHTAPI\Request\Product($client);
+```
+
+**5. widgets**
+
+todo
+
+**6. advertisers**
+
 
 Init:
 ```php
@@ -53,22 +72,6 @@ Filter by active campaigns:
 $output = $request::getAllActiveCampaign(true);
 ```
 
-**3. categories**
-
-todo
-
-**4. products**
-
-todo
-
-**5. widgets**
-
-todo
-
-**6. advertisers**
-
-todo
-
 **7. publishers**
 
 todo
@@ -91,7 +94,17 @@ todo
 
 **12. brands**
 
-todo
+
+Init:
+```php
+$request = new \TRACDELIGHTAPI\Request\Brand($client);
+```
+
+List all Brands:
+
+```php
+$output = $request::getAll();
+```
 
 **13. articles**
 

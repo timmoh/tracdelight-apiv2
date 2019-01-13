@@ -52,6 +52,12 @@ class BaseRequest {
 	protected static $method = 'get';
 
 	/**
+	 * @var string
+	 */
+	protected static $default_sorting = 'name';
+
+
+	/**
 	 * BaseRequest constructor.
 	 *
 	 * @param \TRACDELIGHTAPI\Client $client
@@ -74,9 +80,10 @@ class BaseRequest {
 	 * @return string
 	 */
 	protected static function apiUrlRequest() {
+
 		$url = [static::apiBaseUrl()];
-		print_r($url);
 		static::buildApiKey();
+		static::buildDefaultValues();
 
 		if (!empty(static::$endpoint)) {
 			$url[] = static::$endpoint;
@@ -87,11 +94,29 @@ class BaseRequest {
 		$returnUrl = implode('/', $url);
 
 		//if parameter should be send via query url?foo=bar
+		static::prepareRequestParm();
 		$returnUrl .= '?' . http_build_query(self::$requestParm);
-
-		echo $returnUrl;
+		if (self::$client->debug) {
+			print_r($returnUrl);
+		}
 		return $returnUrl;
 	}
+
+
+	/**
+	 * Pepare Parm for Request
+	 * little hack because tracdelight api doesn't support bool (0/1) just true&false as string
+	 * @return array
+	 */
+	protected static function prepareRequestParm() {
+		foreach (static::$requestParm AS $key => $value) {
+			if (is_bool(static::$requestParm[$key])) {
+				static::$requestParm[$key] = ($value) ? 'true' : 'false';
+			}
+		}
+	}
+
+
 
 	/**
 	 * Build Parm for Request
@@ -118,6 +143,13 @@ class BaseRequest {
 		}
 
 		self::$requestParm['accesskey'] = $apikey;
+	}
+
+	/**
+	 *
+	 */
+	protected static function buildDefaultValues() {
+			self::$requestParm['locale'] = 'de_DE';
 	}
 
 	/**
@@ -207,4 +239,42 @@ class BaseRequest {
 			throw new InvalidReturnCode();
 		}
 	}
+
+
+
+	/**
+	 * @param string $sorting
+	 */
+	public static function setSorting(string $sorting) {
+		if(empty($sorting)){
+			$sorting = self::$default_sorting;
+		}
+		self::$requestParm['sorting'] = $sorting;
+	}
+
+	/**
+	 * @param int $page
+	 */
+	public static function setPage(int $page = 1) {
+		self::$requestParm['page'] = $page;
+	}
+
+	/**
+	 * @param int $pageSize
+	 */
+	public static function setPageSize(int $pageSize = 40) {
+		self::$requestParm['page_size'] = $pageSize;
+	}
+
+	/**
+	 *
+	 * @param array $filter
+	 */
+	public static function filterBy(array $filter){
+		//TODO: should be checked if it is the right input...
+		foreach ($filter AS $key => $value) {
+			static::$requestParm[$key] = $value;
+		}
+	}
+
 }

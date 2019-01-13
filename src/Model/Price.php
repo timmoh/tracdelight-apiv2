@@ -1,6 +1,8 @@
 <?php
 
 namespace TRACDELIGHTAPI\Model;
+use MintWare\JOM\JsonField;
+
 
 class Price extends BaseModel {
 
@@ -37,7 +39,7 @@ class Price extends BaseModel {
 
 	/**
 	 * @var float
-	 * @JsonField(name="shipping_costs", type="float")
+	 * @JsonField(name="shipping_costs", type="float|int")
 	 */
 	public $shipping_costs;
 }

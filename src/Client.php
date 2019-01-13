@@ -23,6 +23,10 @@ class Client {
 	protected $baseUrl         = 'api.tracdelight.io';
 
 	/**
+	 * @var bool
+	 */
+	protected $debug = false;
+	/**
 	 * BaseRequest constructor.
 	 *
 	 * @param string $apiKey
