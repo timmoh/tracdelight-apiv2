@@ -80,7 +80,7 @@ class Advertiser extends BaseRequest {
 	 * @return @return \TRACDELIGHTAPI\Model\Advertiser[]|[]
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 */
-	public static function getAllTopShops(bool $topshops) {
+	public static function getAllTopShops(bool $topshops=true) {
 		self::filterBy(['top_shops' => $topshops]);
 		return self::getAll();
 	}

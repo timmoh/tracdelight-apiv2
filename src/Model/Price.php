@@ -14,13 +14,13 @@ class Price extends BaseModel {
 
 	/**
 	 * @var float
-	 * @JsonField(name="old", type="float")
+	 * @JsonField(name="old", type="float|integer")
 	 */
 	public $old;
 
 	/**
 	 * @var float
-	 * @JsonField(name="current", type="float")
+	 * @JsonField(name="current", type="float|integer")
 	 */
 	public $current;
 
@@ -39,7 +39,7 @@ class Price extends BaseModel {
 
 	/**
 	 * @var float
-	 * @JsonField(name="shipping_costs", type="float|int")
+	 * @JsonField(name="shipping_costs", type="float|integer")
 	 */
 	public $shipping_costs;
 }
